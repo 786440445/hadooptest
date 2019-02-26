@@ -32,6 +32,18 @@ public class NcdcRecordParser {
         return airTemperature != MISSING_TEMPERATURE && quality.matches("[01459]");
     }
 
+    public boolean isMalformedTemperate(){
+        return false;
+    }
+
+    public boolean isMissingTemperature() {
+        return airTemperature == MISSING_TEMPERATURE;
+    }
+
+    public String getQuality() {
+        return quality;
+    }
+
     public String getYear(){
         return year;
     }
