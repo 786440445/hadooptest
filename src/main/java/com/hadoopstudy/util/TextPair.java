@@ -2,6 +2,7 @@ package com.hadoopstudy.util;
 
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.io.WritableComparable;
+import org.apache.hadoop.io.WritableComparator;
 
 import java.io.DataInput;
 import java.io.DataOutput;
@@ -71,5 +72,20 @@ public class TextPair implements WritableComparable<TextPair>{
     public void readFields(DataInput in) throws IOException {
         first.readFields(in);
         second.readFields(in);
+    }
+
+    public static class FirstComparator extends WritableComparator {
+        public FirstComparator() {
+            super(TextPair.class,true);
+        }
+
+        @Override
+        public int compare(WritableComparable wc1, WritableComparable wc2) {
+            TextPair pair1 = (TextPair) wc1;
+            TextPair pair2 = (TextPair) wc2;
+            return pair1.getFirst().compareTo(pair2.getFirst());
+        }
+
+
     }
 }

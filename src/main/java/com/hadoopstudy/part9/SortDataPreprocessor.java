@@ -13,7 +13,6 @@ import org.apache.hadoop.mapreduce.Mapper;
 import org.apache.hadoop.mapreduce.lib.output.SequenceFileOutputFormat;
 import org.apache.hadoop.util.Tool;
 import org.apache.hadoop.util.ToolRunner;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import java.io.IOException;
 
@@ -52,6 +51,7 @@ public class SortDataPreprocessor extends Configured implements Tool {
         // 设置压缩格式
         SequenceFileOutputFormat.setOutputCompressorClass(job, GzipCodec.class);
 
+        // 按照块 进行压缩
         SequenceFileOutputFormat.setOutputCompressionType(job, SequenceFile.CompressionType.BLOCK);
 
         return job.waitForCompletion(true)? 0 : 1;

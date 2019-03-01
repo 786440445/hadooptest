@@ -10,6 +10,8 @@ public class NcdcRecordParser {
     private String year;
     private int airTemperature;
     private String quality;
+    private String stationId;
+    private String stationName;
 
     public void parse(String record){
         year = record.substring(15, 19);
@@ -50,5 +52,21 @@ public class NcdcRecordParser {
 
     public int getAirTemperature(){
         return airTemperature;
+    }
+
+    public String getStationId() {
+        return stationId;
+    }
+
+    public void setStationId(String stationId) {
+        this.stationId = stationId;
+    }
+
+    public String getStationName() {
+        return stationName;
+    }
+
+    public void setStationName(String stationName) {
+        this.stationName = stationName;
     }
 }
