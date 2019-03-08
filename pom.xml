@@ -29,5 +29,61 @@
             <artifactId>avro</artifactId>
             <version>1.7.7</version>
         </dependency>
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro-mapred</artifactId>
+            <version>1.7.7</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.avro</groupId>
+            <artifactId>avro-ipc</artifactId>
+            <version>1.7.7</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.parquet/parquet-avro -->
+        <dependency>
+            <groupId>org.apache.parquet</groupId>
+            <artifactId>parquet-avro</artifactId>
+            <version>1.8.1</version>
+        </dependency>
+        <!--https://mvnrepository.com/artifact/org.apache.hbase/hbase-server-->
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-server</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/org.apache.hbase/hbase-client -->
+        <dependency>
+            <groupId>org.apache.hbase</groupId>
+            <artifactId>hbase-client</artifactId>
+            <version>1.2.6</version>
+        </dependency>
+
     </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.avro</groupId>
+                <artifactId>avro-maven-plugin</artifactId>
+                <version>1.7.7</version>
+                <executions>
+                    <execution>
+                        <id>schemas</id>
+                        <phase>generate-resources</phase>
+                        <goals>
+                            <goal>schema</goal>
+                        </goals>
+                        <configuration>
+                            <includes>
+                                <include>StringPair.avsc</include>
+                            </includes>
+                            <stringType>String</stringType>
+                            <sourceDirectory>src/main/resources</sourceDirectory>
+                            <outputDirectory>${project.build.directory}</outputDirectory>
+                        </configuration>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
 </project>
